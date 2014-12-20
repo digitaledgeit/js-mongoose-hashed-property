@@ -1,9 +1,12 @@
 var hash = require('./lib/hash.js');
 
 /**
- * Hash property plugin
+ * Hash password property plugin
  * @param   {Schema}  schema
  * @param   {Object}  [options]
+ * @param   {String}  [options.verifyMethod]
+ * @param   {String}  [options.passwordProperty]
+ * @param   {String}  [options.hashedPasswordProperty]
  */
 module.exports = function(schema, options) {
 	options                     = options || {};

@@ -9,26 +9,36 @@ Hash a password on a mongoose model.
 ## Usage
 
     var mongoose = require('mongoose');
-    var plugin = require('mongoose-encrypted-property');
+    var plugin = require('mongoose-hashed-property');
+    
+    mongoose.connect('localhost/test');
 
-    schema = new mongoose.Schema({
+    var schema = new mongoose.Schema({
         title:  String
     });
-
-    schema.plugin(plugin, {
-        encryptionKey:      'password',
-        plaintextProperty:  'plaintext',
-        encryptedproperty:  'encrypted'
-    });
+    
+    schema.plugin(plugin);
     
     var Model = mongoose.model('Model', schema);
     var model = new Model();
     
-    // sets the `encrypted` property to the `JSON.stringify`ied and encrypted contents of `plaintext`.
-    model.plaintext = {un: 'username', pw: 'password'}; 
+    //set a password
+    model.password = 'password';
     
-    // gets the `encrypted` property to the `JSON.stringify`ied and encrypted contents of `plaintext`.
-    console.log(model.plaintext);
+    //verify a password is correct
+    console.log(model.verifyPassword('password')); //true
+    console.log(model.verifyPassword('test')); //false
+    
+    //the hashed value stored in the data store
+    console.log(model.hashed_password);
+    
+    mongoose.disconnect();
+
+## Options
+
+- `verifyMethod='verifyPassword'`  - the name of the method to use to verify another password matches
+- `passwordProperty='password'`  - the name of the property to use to set the password value
+- `hashedPasswordProperty='hashed_password'`  - the name of the property to use to set the hashed password value
 
 ## License
 
