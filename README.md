@@ -39,6 +39,8 @@ Hash a password on a mongoose model.
 - `verifyMethod='verifyPassword'`  - the name of the method to use to verify another password matches
 - `passwordProperty='password'`  - the name of the property to use to set the password value
 - `hashedPasswordProperty='hashed_password'`  - the name of the property to use to set the hashed password value
+- `saltlen` - the length to generated salts
+- `iterations` - the number of iterations the password is hashed as part of pkdf2
 
 ## License
 

@@ -18,7 +18,7 @@ module.exports = function(schema, options) {
 
 	//add a property for the hashed value
 	var dfn = {};
-	dfn[options.hashedPasswordProperty] = 'String';
+	dfn[hashedPasswordProperty] = 'String';
 	schema.add(dfn);
 
 	//add a virtual property for the plaintext value
